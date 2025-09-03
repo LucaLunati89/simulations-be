@@ -1,5 +1,6 @@
 from django.db import models
 from .employee_simulation_model import EmployeeSimulation
+from ..enums.simulation_status import SimulationStatus
 
 class Simulation(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
@@ -9,13 +10,10 @@ class Simulation(models.Model):
         EmployeeSimulation, on_delete=models.CASCADE, related_name="simulations"
     )
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["employee_simulation"],
-                name="uniq_employee_simulation"
-            )
-        ]
-
+    status = models.CharField(
+        max_length=10,
+        choices=SimulationStatus.choices,
+        default=SimulationStatus.CREATED
+    )
     def __str__(self):
         return f"{self.name or 'Simulation'}: Emp {self.employee_simulation.id}"

@@ -27,7 +27,7 @@ echo "👤 Creazione superuser admin..."
 echo "from django.contrib.auth import get_user_model; \
 User = get_user_model(); \
 User.objects.filter(username='admin').delete(); \
-User.objects.create_superuser('admin', 'admin@example.com', '')" \
+User.objects.create_superuser('admin', 'admin@example.com', 'admin1234')" \
 | python manage.py shell
 
 # 6. Rigenero requirements.txt
