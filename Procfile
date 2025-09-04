@@ -1,1 +1,1 @@
-web: gunicorn simulation_backend.wsgi:application --log-file -
+web: gunicorn simulation_backend.wsgi:application --bind 0.0.0.0:$PORT
